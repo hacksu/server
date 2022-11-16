@@ -10,7 +10,7 @@ if ! [ -x "$(command -v npm)" ]; then
     bash $SWD/node.sh
 fi
 
-if [ -x "$()" ]; then
+if [ -x "$(command -v pm2)" ]; then
 #   create pm2 directory
     mkdir /opt/pm2
 #   set permissions so all users may access it
