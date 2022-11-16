@@ -16,8 +16,8 @@ if ! [ -x "$(command -v node)" ]; then
     npm install --global n
 #   swap to node v18
     n 18
-#   swap to new bash to ensure we have proper version
-    exec bash
+#   refresh shell
+    hash -r
 #   install yarn
     echo "Installing Yarn v1";
     npm install --global yarn@1.x

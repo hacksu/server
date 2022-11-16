@@ -21,8 +21,8 @@ if ! [ -x "$(command -v pm2)" ]; then
     chmod -R 777 /opt/pm2
 #   set PM2_HOME
     add_line_if_not_present /etc/environment PM2_HOME=/opt/pm2
-#   refresh environment variables
-    source /etc/environment
+#   refresh shell
+    hash -r
 #   install pm2
     npm i -g pm2
 #   ensure it runs on startup
