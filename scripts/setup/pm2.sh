@@ -7,7 +7,7 @@ SWD=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd );
 source $SWD/../utils/files.sh
 
 if ! [ -x "$(command -v npm)" ]; then
-    sh ./node.sh
+    bash $SWD/node.sh
 fi
 
 if [ -x "$()" ]; then
