@@ -14,7 +14,7 @@ if ! [ -x "$(command -v nginx)" ]; then
 #   allow it through firewall
     ufw allow "Nginx Full"
 #   enable firewall
-    ufw enable
+    ufw --force enable
 #   firewall status
     ufw status
 fi
