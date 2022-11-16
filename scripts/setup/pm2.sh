@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# 
+
 # Environment Variables
 CWD=$( pwd );
 REPO=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && git rev-parse --show-toplevel );
@@ -11,7 +13,7 @@ if ! [ -x "$(command -v npm)" ]; then
     bash $REPO/scripts/setup/node.sh
 fi
 
-if [ -x "$(command -v pm2)" ]; then
+if ! [ -x "$(command -v pm2)" ]; then
 #   create pm2 directory
     mkdir /opt/pm2
 #   set permissions so all users may access it
