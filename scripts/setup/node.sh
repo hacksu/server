@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Environment Variables
+CWD=$( pwd );
+SWD=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
 # Prevents interactive prompts from running during a command
 NI = "DEBIAN_FRONTEND=noninteractive";
 
