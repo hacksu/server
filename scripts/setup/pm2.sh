@@ -2,12 +2,13 @@
 
 # Environment Variables
 CWD=$( pwd );
-SWD=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd );
+REPO=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && git rev-parse --show-toplevel );
 
-source $SWD/../utils/files.sh
+
+source $REPO/scripts/utils/files.sh
 
 if ! [ -x "$(command -v npm)" ]; then
-    bash $SWD/node.sh
+    bash $REPO/scripts/setup/node.sh
 fi
 
 if [ -x "$(command -v pm2)" ]; then

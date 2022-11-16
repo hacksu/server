@@ -2,12 +2,13 @@
 
 # Environment Variables
 CWD=$( pwd );
+REPO=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && git rev-parse --show-toplevel );
 
 if [ -x "$(command -v node)" ]; then
     echo "Node.js $(node -v) is already installed";
 else
     echo "Installing Node.js & NPM";
-    source $SWD/env.sh
+    source $REPO/scripts/setup/env.sh
 #   fetch package registry
     sudo apt update -y
 #   install node & npm
