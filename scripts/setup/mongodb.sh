@@ -11,10 +11,14 @@ if ! [ -x "$(command -v mongo)" ]; then
     source $REPO/scripts/setup/env.sh
 #   fetch package registry
     sudo apt-get update -y
+#   add ubuntu 20.xx (focal) sources
+    echo "deb http://security.ubuntu.com/ubuntu focal-security main" | sudo tee /etc/apt/sources.list.d/focal-security.lis
 #   install gnupg
-    sudo apt-get install gnupg -y
+    sudo apt-get install gnupg libssl1.1 -y
 #   add mongodb pgp key
-    wget -qO - https://www.mongodb.org/static/pgp/server-$MONGO_VERSION.asc | sudo apt-key add -
+#    wget -qO - https://www.mongodb.org/static/pgp/server-$MONGO_VERSION.asc | sudo apt-key add -
+    curl -fsSL https://www.mongodb.org/static/pgp/server-$MONGO_VERSION.asc | sudo apt-key add -
+#    echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/$MONGO_VERSION multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-$MONGO_VERSION.list
     echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/$MONGO_VERSION multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-$MONGO_VERSION.list
 #   fetch package registry
     sudo apt-get update -y
