@@ -26,7 +26,7 @@ if ! [ -x "$(command -v mongo)" ]; then
     systemctl enable mongod
 fi
 
+# get connection status
+mongosh --eval 'db.runCommand({ connectionStatus: 1 })'
 # show mongodb status
 systemctl status mongod
-# get connection status
-mongo --eval 'db.runCommand({ connectionStatus: 1 })'
