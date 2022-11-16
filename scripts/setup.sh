@@ -8,7 +8,7 @@ bash $REPO/scripts/setup/pm2.sh
 bash $REPO/scripts/setup/nginx.sh
 bash $REPO/scripts/setup/mongodb.sh
 
+pm2 status
 systemctl status nginx
 systemctl status mongodb
-pm2 status
 
