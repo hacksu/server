@@ -6,7 +6,7 @@ REPO=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && git rev-pars
 
 MONGO_VERSION=4.4
 
-if ! [ -x "$(command -v mongo)" ]; then
+if ! [[ -x "$(command -v mongo)" ] && [ -x "$(command -v mongosh)" ]]; then
     echo "Installing MongoDB";
     source $REPO/scripts/setup/env.sh
 #   add ubuntu 20.xx (focal) sources
@@ -26,7 +26,14 @@ if ! [ -x "$(command -v mongo)" ]; then
     systemctl enable mongod
 fi
 
-# get connection status
-mongosh --eval 'db.runCommand({ connectionStatus: 1 })'
-# show mongodb status
-systemctl status mongod
+if [ -x "$(command -v mongosh)" ]; then
+    # get connection status
+    mongosh --eval 'db.runCommand({ connectionStatus: 1 })'
+    # show mongodb status
+    systemctl status mongodb
+else if [ -x "$(command -v mongo)" ];
+    # get connection status
+    mongo --eval 'db.runCommand({ connectionStatus: 1 })'
+    # show mongodb status
+    systemctl status mongod
+fi;
