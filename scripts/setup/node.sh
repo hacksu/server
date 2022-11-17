@@ -11,6 +11,8 @@ if ! [ -x "$(command -v node)" ]; then
     sudo apt update -y
 #   install node & npm
     sudo apt install -y nodejs npm
+#   upgrade npm
+    npm install -g npm@9
 #   install n to allow us to easily swap between nodejs versions
     echo "Upgrading Node.js Version";
     npm install --global n
@@ -20,7 +22,7 @@ if ! [ -x "$(command -v node)" ]; then
     hash -r
 #   install yarn
     echo "Installing Yarn v1";
-    npm install --global yarn@1.x
+    npm install --global yarn@1
 fi
 
 echo "Node.js is set up";
