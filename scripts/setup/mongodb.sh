@@ -31,7 +31,7 @@ if [ -x "$(command -v mongosh)" ]; then
     mongosh --eval 'db.runCommand({ connectionStatus: 1 })'
     # show mongodb status
     systemctl status mongodb
-else if [ -x "$(command -v mongo)" ];
+elif [ -x "$(command -v mongo)" ];
     # get connection status
     mongo --eval 'db.runCommand({ connectionStatus: 1 })'
     # show mongodb status
