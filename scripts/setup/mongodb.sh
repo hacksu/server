@@ -6,7 +6,7 @@ REPO=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && git rev-pars
 
 MONGO_VERSION=4.4
 
-if ! [[ -x "$(command -v mongo)" ] && [ -x "$(command -v mongosh)" ]]; then
+if ! [ -x "$(command -v mongo)" && -x "$(command -v mongosh)" ]; then
     echo "Installing MongoDB";
     source $REPO/scripts/setup/env.sh
 #   add ubuntu 20.xx (focal) sources
