@@ -27,7 +27,7 @@ if ! [ -x "$(command -v pm2)" ]; then
 #   install pm2
     PM2_HOME=/opt/pm2 npm i -g pm2
 #   ensure it runs on startup
-    pm2 startup
+    pm2 startup --hp /opt/pm2
 fi
 
 add_line_if_not_present /etc/environment PM2_HOME=/opt/pm2
