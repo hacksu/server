@@ -42,7 +42,7 @@ export async function generateBanner(commit: boolean = false) {
         const __banner = __data + '/banner.txt';
         const already = existsSync(__banner);
         writeFileSync(__data + '/banner.txt', result);
-        await exec('banner', `sed -i 's/.*Banner.*/Banner ${__banner}/g' /etc/ssh/sshd_config`);
+        await exec('banner', `sed -i 's/.*Banner.*/Banner ${__banner.split('/').join('\\/')}/g' /etc/ssh/sshd_config`);
         if (!already) {
             await exec('banner.ssh-restart', `service sshd restart`);
         }
