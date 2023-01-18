@@ -14,4 +14,4 @@ systemctl status nginx
 systemctl status mongodb
 
 bash $REPO/scripts/setup/zsh.sh
-zsh
+zsh -c "service nginx status && service mongod status && pm2 status && zsh"

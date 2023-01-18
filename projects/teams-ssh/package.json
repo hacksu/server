@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm install && tsx src",
+    "test": "npm install && tsx src/config.ts",
     "dev": "tsx src"
   },
   "keywords": [],
