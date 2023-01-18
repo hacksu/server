@@ -39,7 +39,7 @@ if (!existsSync(__appKey)) {
     console.error([
         `Ensure ${chalk.grey(__appKey)} is present`,
         `This is a private key tied to ${chalk.blue('https://github.com/organizations/hacksu/settings/apps/hacksu-read')}`,
-        `You can generate a new private key by clicking  ${chalk.bgGray(' Generate a private key ')} on the page linked above`,
+        `You can generate a new private key by clicking  ${chalk.bgGray(' Generate a private key ')}  on the page linked above`,
     ].map(o => ' - ' + o).join(EOL));
     console.error();
     process.exit(1);
