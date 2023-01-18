@@ -24,8 +24,9 @@ if ! [ -x "$(command -v pm2)" ]; then
 #   refresh environment variables
     source /etc/environment
     export PM2_HOME=/opt/pm2
+    export pm2_home=/opt/pm2
 #   install pm2
-    npm i -g pm2 --hp /opt/pm2
+    npm i -g pm2
 #   ensure it runs on startup
     pm2 startup --hp /opt/pm2
 fi
