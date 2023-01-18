@@ -27,8 +27,8 @@ export async function generateBanner(commit: boolean = false) {
         [
             `Login to this server via your lowercase Github Username`,
             ` - SSH keys are pulled from Github. Use your Github SSH key to authenticate.`,
-            ` - SSH access is granted via membership in ${blue('https://github.com/orgs/hacksu/teams/ssh/members')}`,
-            ` - Sudo access is granted via membership in ${blue('https://github.com/orgs/hacksu/teams/sudo/members')}`,
+            ` - SSH access is granted via membership in ${blue('https://github.com/orgs/hacksu/teams/ssh')}`,
+            ` - Sudo access is granted via membership in ${blue('https://github.com/orgs/hacksu/teams/sudo')}`,
         ].join(EOL),
     ]
 
