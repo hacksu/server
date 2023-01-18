@@ -6,7 +6,9 @@ REPO=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && git rev-pars
 
 MONGO_VERSION=4.4
 if [ -x "$(command -v mongo)" ]; then
+    echo "MongoDB is already installed"
 elif [ -x "$(command -v mongosh)" ]; then
+    echo "MongoDB is already installed"
 else
 # if ! [ -x "$(command -v mongo)" && -x "$(command -v mongosh)" ]; then
     echo "Installing MongoDB";
