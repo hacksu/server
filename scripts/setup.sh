@@ -13,3 +13,5 @@ pm2 status
 systemctl status nginx
 systemctl status mongodb
 
+bash $REPO/scripts/setup/zsh.sh
+zsh
