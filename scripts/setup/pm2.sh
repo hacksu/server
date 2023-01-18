@@ -30,5 +30,10 @@ if ! [ -x "$(command -v pm2)" ]; then
     pm2 startup
 fi
 
+add_line_if_not_present /etc/environment PM2_HOME=/opt/pm2
+source /etc/environment
+export PM2_HOME=/opt/pm2
+
 #   show status
 pm2 status
+
