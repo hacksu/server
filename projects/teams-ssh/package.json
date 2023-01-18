@@ -1,0 +1,29 @@
+{
+  "name": "teams-ssh",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm install && tsx src",
+    "dev": "tsx src"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "prepend-transform": "0.0.1019",
+    "@octokit/app": "^13.1.1",
+    "@octokit/core": "^4.1.0",
+    "@octokit/rest": "^19.0.5",
+    "dotenv": "^16.0.3",
+    "envalid": "^7.3.1",
+    "node-fetch": "^3.3.0",
+    "lowdb": "^5.0.5",
+    "zx": "^7.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "tsx": "^3.12.2",
+    "typescript": "^4.9.4"
+  }
+}
