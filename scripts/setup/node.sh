@@ -16,8 +16,8 @@ if ! [ -x "$(command -v node)" ]; then
 #   install n to allow us to easily swap between nodejs versions
     echo "Upgrading Node.js Version";
     npm install --global n
-#   swap to node v18
-    n 18
+#   swap to stable node (v18.13.0 as of 1/18/23)
+    n stable
 #   refresh shell
     hash -r
 #   install yarn
