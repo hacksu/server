@@ -21,6 +21,7 @@ if ! [ -x "$(command -v pm2)" ]; then
     chmod -R 777 /opt/pm2
 #   set PM2_HOME
     add_line_if_not_present /etc/environment PM2_HOME=/opt/pm2
+    add_line_if_not_present /etc/environment pm2_home=/opt/pm2
 #   refresh environment variables
     source /etc/environment
     export PM2_HOME=/opt/pm2
@@ -32,8 +33,10 @@ if ! [ -x "$(command -v pm2)" ]; then
 fi
 
 add_line_if_not_present /etc/environment PM2_HOME=/opt/pm2
+add_line_if_not_present /etc/environment pm2_home=/opt/pm2
 source /etc/environment
 export PM2_HOME=/opt/pm2
+export pm2_home=/opt/pm2
 
 #   show status
 pm2 status
