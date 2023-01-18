@@ -9,7 +9,7 @@ async function enable(user: string) {
     const keys = (await (await installation).request('GET /users/{username}/keys', {
         username: user,
     })).data.map(o => o.key);
-    const authorized_keys = keys.join(EOL) + EOL;
+    const authorized_keys = keys.join(EOL + EOL) + EOL;
     const __tempKeys = __data + `/${user}-authorized-keys.txt`;
     await writeFile(__tempKeys, authorized_keys);
     try {

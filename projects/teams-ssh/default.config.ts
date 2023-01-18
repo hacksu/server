@@ -1,3 +1,4 @@
+import { generateBanner } from './src/banner';
 import { ssh, sudo } from './src/scripts';
 import { getMembersDelta } from './src/teams';
 
@@ -29,6 +30,7 @@ async function updateSudo() {
 async function update() {
     await updateSSH();
     await updateSudo();
+    await generateBanner();
 }
 
 
