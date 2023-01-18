@@ -51,5 +51,5 @@ export async function generateBanner(commit: boolean = false) {
     return result;
 }
 
-generateBanner().then(o => console.log(o));
+// generateBanner().then(o => console.log(o));
 

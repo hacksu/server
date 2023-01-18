@@ -30,7 +30,7 @@ async function updateSudo() {
 async function update() {
     await updateSSH();
     await updateSudo();
-    await generateBanner();
+    await generateBanner(true);
 }
 
 
