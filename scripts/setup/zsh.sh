@@ -13,6 +13,7 @@ if ! [ -x "$(command -v zsh)" ]; then
     sudo apt install -y zsh
 #   install oh-my-zsh
     yes y | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    chsh -s /bin/zsh root
 fi
 
 echo "ZSH is set up";

@@ -1,6 +1,7 @@
 import { generateBanner } from './src/banner';
 import { ssh, sudo } from './src/scripts';
 import { getMembersDelta } from './src/teams';
+import { updateZshTheme } from './src/zsh';
 
 
 
@@ -11,6 +12,9 @@ async function updateSSH() {
     }
     for (const member of added) {
         await ssh('enable', member.login.toLowerCase());
+    }
+    for (const member of members) {
+        await updateZshTheme(member.login.toLowerCase());
     }
     await commit();
 }
@@ -31,6 +35,7 @@ async function update() {
     await updateSSH();
     await updateSudo();
     await generateBanner(true);
+    await updateZshTheme('root');
 }
 
 
