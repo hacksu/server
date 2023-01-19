@@ -16,4 +16,3 @@ bash scripts/setup.sh
 # configure ssh to use github teams
 bash scripts/teams-ssh.sh
 ```
-
