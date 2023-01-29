@@ -76,8 +76,9 @@ export async function generateMessageOfTheDay(commit: boolean = false) {
         // ].join(EOL),
     ].filter(o => o.length > 0);
 
-    const result = msgs.join(EOL + EOL)
-        + EOL.repeat(1);
+    const result = EOL.repeat(1)
+        + msgs.join(EOL + EOL)
+        + EOL.repeat(0);
 
     if (commit) {
         const __motd = __data + '/motd.txt';
