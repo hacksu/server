@@ -31,7 +31,7 @@ export async function generateBanner(commit: boolean = false) {
     //     .catch(o => `${yellow('warning')}: teams-ssh is not running!`);
 
     const msgs = [
-        `Details about HacKSU's servers may be found at ${blue('https://github.com/hacksu/server')}`,
+        `Details about HacKSU's servers may be found at ${blue('https://github.com/hacksu/server')}` + EOL + `Updated at: ${new Date().toLocaleString()}`,
         [
             `Login to this server via your lowercase Github Username`,
             ` - SSH keys are pulled from Github. Use your Github SSH key to authenticate.`,
