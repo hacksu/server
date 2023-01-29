@@ -55,6 +55,15 @@ export function exec(label: string, cmd: string) {
 
 
 async function streamToString(stream) {
+    return await Promise.race([_streamToString(stream), new Promise<string>(resolve => {
+        setTimeout(() => {
+            console.error('stream timeout');
+            resolve('');
+        }, 1000)
+    })]);
+}
+
+async function _streamToString(stream) {
     // lets have a ReadableStream as a stream variable
     const chunks: Buffer[] = [];
 
