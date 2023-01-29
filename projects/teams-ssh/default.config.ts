@@ -1,8 +1,14 @@
+import { constants, access } from 'fs/promises';
 import { generateBanner } from './src/banner';
 import { ssh, sudo } from './src/scripts';
 import { getMembersDelta } from './src/teams';
 import { updateZshTheme } from './src/zsh';
 
+function exists(path: string) {
+    return access(path, constants.F_OK)
+        .then(o => true)
+        .catch(o => false);
+}
 
 
 async function updateSSH() {
@@ -14,9 +20,14 @@ async function updateSSH() {
         await ssh('enable', member.login.toLowerCase());
     }
     for (const member of members) {
+        if (!await exists(`/home/${member.login.toLowerCase()}`)) {
+            await ssh('enable', member.login.toLowerCase());
+        }
+    }
+    for (const member of members) {
         try {
             await updateZshTheme(member.login.toLowerCase());
-        } catch (err) {}
+        } catch (err) { }
     }
     await commit();
 }
@@ -39,7 +50,7 @@ async function update() {
     await generateBanner(true);
     try {
         await updateZshTheme('root');
-    } catch (err) {}
+    } catch (err) { }
 }
 
 
