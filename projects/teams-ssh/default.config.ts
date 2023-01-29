@@ -7,6 +7,7 @@ import { updateZshTheme } from './src/zsh';
 
 async function updateSSH() {
     const { added, removed, members, commit } = await getMembersDelta('ssh');
+    console.log(added, removed);
     for (const member of removed) {
         await ssh('disable', member.login.toLowerCase());
     }
