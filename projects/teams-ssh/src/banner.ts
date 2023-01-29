@@ -24,7 +24,7 @@ export async function generateBanner(commit: boolean = false) {
     }) as any;
     hacksu = gradient(BLUE, GREEN).multiline(hacksu);
 
-    await exec(`teams-ssh:update`, `bash sync.sh`);
+    await exec(`teams-ssh:update`, `bash ${__dirname}/../sync.sh`);
 
     const uptime = await exec(`teams-ssh:uptime`, `pm2 show teams-ssh | grep 'status\|name\|restarts\|uptime\|┐\|─┘' | grep -v 'escribing\|namespace\|unstable' | head -n 6`)
         .then(o => o.data.err + o.data.out)
