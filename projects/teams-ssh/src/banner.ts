@@ -6,6 +6,10 @@ import chalk from 'chalk';
 import { existsSync, writeFileSync } from 'fs';
 import { __data } from '.';
 import { exec } from './script';
+import { execSync } from 'child_process';
+import { Transform } from 'stream';
+import { Console } from 'console';
+import { pm2Status } from './status';
 
 const BLUE = '#4683ff';
 const GREEN = '#35c982';
@@ -59,8 +63,42 @@ export async function generateBanner(commit: boolean = false) {
         }
     }
 
+    await generateMessageOfTheDay(commit);
+
     return result;
 }
+
+export async function generateMessageOfTheDay(commit: boolean = false) {
+
+    const msgs = [
+        `status` + EOL + await pm2Status(),
+        [
+            // `Login to this server via your lowercase Github Username`,
+            // ` - SSH keys are pulled from Github. Use your Github SSH key to authenticate.`,
+            // ` - SSH access is granted via membership in ${blue('https://github.com/orgs/hacksu/teams/ssh')}`,
+            // ` - Sudo access is granted via membership in ${blue('https://github.com/orgs/hacksu/teams/sudo')}`,
+            // ` - Files for hacksu/server are located at ${gray('/root/server')}`,
+
+        ].join(EOL),
+    ].filter(o => o.length > 0);
+
+    const result = EOL.repeat(2)
+        + msgs.join(EOL + EOL)
+        + EOL.repeat(2);
+
+    if (commit) {
+        const __motd = __data + '/motd.txt';
+        const already = existsSync(__motd);
+        writeFileSync(__data + '/motd.txt', result);
+        writeFileSync('/etc/motd', result);
+        if (!already) {
+            await exec('banner.ssh-restart', `service sshd restart`);
+        }
+    }
+
+    return result;
+}
+
 
 // generateBanner().then(o => console.log(o));
 
