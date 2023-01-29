@@ -47,3 +47,7 @@ yarn-error.log*
 
 **/package-lock.json
 !/package-lock.json
+
+a.json
+a.sh
+a.txt
