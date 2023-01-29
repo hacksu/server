@@ -41,13 +41,15 @@ export async function getMembersDelta(team: string) {
     const added = new Array<Member>();
     const removed = new Array<Member>();
     for (const member of members) {
-        if (!current.members.find(o => o.name === member.name)) {
+        if (!current.members.find(o => o.login === member.login)) {
             added.push(member);
+            console.log({ team }, '+ member', { login: member.login });
         }
     }
     for (const member of current.members) {
-        if (!members.find(o => o.name === member.name)) {
+        if (!members.find(o => o.login === member.login)) {
             removed.push(member);
+            console.log({ team }, '- member', { login: member.login });
         }
     }
 

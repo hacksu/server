@@ -6,6 +6,8 @@
   "scripts": {
     "start": "npm install && tsx src",
     "test": "npm install && tsx src/config.ts",
+    "docker": "npm run build:docker | grep \"Successfully built\" | sed 's/Successfully built //g' | xargs -I{} echo {}",
+    "build:docker": "DOCKER_BUILDKIT=0 docker build -t hacksu/teams-ssh:1.0 .",
     "dev": "tsx src"
   },
   "keywords": [],

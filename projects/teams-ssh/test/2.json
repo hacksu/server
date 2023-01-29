@@ -1,0 +1,11 @@
+{
+    "teams": {
+        "ssh": [
+            { "login": "test1" },
+            { "login": "test2" }
+        ],
+        "sudo": [
+
+        ]
+    }
+}

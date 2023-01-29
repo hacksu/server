@@ -7,7 +7,6 @@ import { updateZshTheme } from './src/zsh';
 
 async function updateSSH() {
     const { added, removed, members, commit } = await getMembersDelta('ssh');
-    console.log(added, removed);
     for (const member of removed) {
         await ssh('disable', member.login.toLowerCase());
     }
@@ -17,9 +16,7 @@ async function updateSSH() {
     for (const member of members) {
         try {
             await updateZshTheme(member.login.toLowerCase());
-        } catch (err) {
-
-        }
+        } catch (err) {}
     }
     await commit();
 }
@@ -40,7 +37,9 @@ async function update() {
     await updateSSH();
     await updateSudo();
     await generateBanner(true);
-    await updateZshTheme('root');
+    try {
+        await updateZshTheme('root');
+    } catch (err) {}
 }
 
 

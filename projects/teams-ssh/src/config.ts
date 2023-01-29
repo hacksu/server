@@ -21,6 +21,7 @@ export const env = cleanEnv(process.env, {
     GITHUB_APP_KEY: str(),
     GITHUB_INSTALL_ID: num(),
     GITHUB_ORG: str(),
+    TEST: str(),
 })
 
 export const __data = resolve(process.cwd(), 'data');
@@ -32,7 +33,7 @@ mkdirSync(__data, {
 })
 
 const __appKey = resolve(process.cwd(), env.GITHUB_APP_KEY);
-if (!existsSync(__appKey)) {
+if (!existsSync(__appKey) && !env.TEST) {
     console.error();
     console.error(chalk.red(`Missing Github App Private Key`));
     console.error();
@@ -45,10 +46,42 @@ if (!existsSync(__appKey)) {
     process.exit(1);
 }
 
-export const app = new App({
+if (env.TEST) {
+    process.on('uncaughtException', (err) => {
+        console.error('caught', err);
+    })
+}
+
+export const app: App<{
+    appId: number,
+    privateKey: string,
+}> = !env.TEST ? new App({
     appId: env.GITHUB_APP_ID,
-    privateKey: readFileSync(__appKey, 'utf8'),
-});
+    privateKey: env.TEST ? '' : readFileSync(__appKey, 'utf8'),
+}) : {
+    async getInstallationOctokit() {
+        return {
+            request(route, opts) {
+                console.log('request', route, opts);
+                let data: any;
+                if (opts?.team_slug === 'ssh') {
+                    data = JSON.parse(readFileSync(env.TEST, 'utf8'))['teams']['ssh'];
+                }
+                if (opts?.team_slug === 'sudo') {
+                    data = JSON.parse(readFileSync(env.TEST, 'utf8'))['teams']['sudo'];
+                }
+                if (route.endsWith('keys')) {
+                    // data = JSON.parse(readFileSync(env.TEST, 'utf8'))?.['keys'];
+                    data = [{ key: 'key@' + opts.username }]
+                }
+                return Promise.resolve({
+                    status: 200,
+                    data: data, //JSON.stringify(data)
+                })
+            }
+        }
+    }
+} as any;
 
 export const installation = app.getInstallationOctokit(env.GITHUB_INSTALL_ID)
 
