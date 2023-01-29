@@ -58,6 +58,6 @@ update();
 setInterval(() => {
     update();
 }, 60 * 1000);
-setInterval(() => {
-    generateMessageOfTheDay(true);
-}, 10 * 1000)
+// setInterval(() => {
+//     generateMessageOfTheDay(true);
+// }, 10 * 1000)
