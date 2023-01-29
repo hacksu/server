@@ -1,5 +1,5 @@
 import { constants, access } from 'fs/promises';
-import { generateBanner } from './src/banner';
+import { generateBanner, generateMessageOfTheDay } from './src/banner';
 import { ssh, sudo } from './src/scripts';
 import { getMembersDelta } from './src/teams';
 import { updateZshTheme } from './src/zsh';
@@ -57,4 +57,7 @@ async function update() {
 update();
 setInterval(() => {
     update();
-}, 60 * 1000)
+}, 60 * 1000);
+setInterval(() => {
+    generateMessageOfTheDay(true);
+}, 10 * 1000)
