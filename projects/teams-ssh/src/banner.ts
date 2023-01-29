@@ -71,20 +71,13 @@ export async function generateBanner(commit: boolean = false) {
 export async function generateMessageOfTheDay(commit: boolean = false) {
 
     const msgs = [
-        `status` + EOL + await pm2Status(),
-        [
-            // `Login to this server via your lowercase Github Username`,
-            // ` - SSH keys are pulled from Github. Use your Github SSH key to authenticate.`,
-            // ` - SSH access is granted via membership in ${blue('https://github.com/orgs/hacksu/teams/ssh')}`,
-            // ` - Sudo access is granted via membership in ${blue('https://github.com/orgs/hacksu/teams/sudo')}`,
-            // ` - Files for hacksu/server are located at ${gray('/root/server')}`,
-
-        ].join(EOL),
+        gray(`sudo pm2 status`) + EOL + await pm2Status(),
+        // [
+        // ].join(EOL),
     ].filter(o => o.length > 0);
 
-    const result = EOL.repeat(2)
-        + msgs.join(EOL + EOL)
-        + EOL.repeat(2);
+    const result = msgs.join(EOL + EOL)
+        + EOL.repeat(1);
 
     if (commit) {
         const __motd = __data + '/motd.txt';
