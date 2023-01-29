@@ -9,3 +9,5 @@ if [ "$REPO_LOCAL_HASH" != "$REPO_REMOTE_HASH" ]; then
     git pull
     pm2 restart teams-ssh
 fi
+
+exit 0

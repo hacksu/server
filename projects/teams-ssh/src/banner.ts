@@ -27,7 +27,7 @@ export async function generateBanner(commit: boolean = false) {
     await exec(`teams-ssh:update`, `bash ${__dirname}/../sync.sh`);
 
     const uptime = await exec(`teams-ssh:uptime`, `pm2 show teams-ssh | grep 'status\|name\|restarts\|uptime\|┐\|─┘' | grep -v 'escribing\|namespace\|unstable' | head -n 6`)
-        .then(o => o.data.err + o.data.out)
+        .then(o => o.data.out)
         .catch(o => `${yellow('warning')}: teams-ssh is not running!`);
 
     const msgs = [
