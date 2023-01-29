@@ -12,6 +12,8 @@ const GREEN = '#35c982';
 
 const blue = chalk.hex(BLUE);
 const green = chalk.hex(GREEN);
+const yellow = chalk.yellow;
+const gray = chalk.gray;
 
 const figlet = promisify(_figlet);
 
@@ -22,6 +24,11 @@ export async function generateBanner(commit: boolean = false) {
     }) as any;
     hacksu = gradient(BLUE, GREEN).multiline(hacksu);
 
+    await exec(`teams-ssh:update`, `bash sync.sh`);
+
+    const uptime = await exec(`teams-ssh:uptime`, `pm2 show teams-ssh | grep 'status\|name\|restarts\|uptime\|┐\|─┘' | grep -v 'escribing\|namespace\|unstable' | head -n 6`)
+        .catch(o => ({ data: { out: `${yellow('warning')}: teams-ssh is not running!` }}))
+
     const msgs = [
         `Details about HacKSU's servers may be found at ${blue('https://github.com/hacksu/server')}`,
         [
@@ -29,8 +36,11 @@ export async function generateBanner(commit: boolean = false) {
             ` - SSH keys are pulled from Github. Use your Github SSH key to authenticate.`,
             ` - SSH access is granted via membership in ${blue('https://github.com/orgs/hacksu/teams/ssh')}`,
             ` - Sudo access is granted via membership in ${blue('https://github.com/orgs/hacksu/teams/sudo')}`,
+            ` - Files for hacksu/server are located at ${gray('/root/server')}`,
+
         ].join(EOL),
-    ]
+        uptime.data.out,
+    ].filter(o => o.length > 0);
 
     const result = EOL.repeat(2)
         + hacksu
