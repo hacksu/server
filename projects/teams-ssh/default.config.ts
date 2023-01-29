@@ -14,7 +14,11 @@ async function updateSSH() {
         await ssh('enable', member.login.toLowerCase());
     }
     for (const member of members) {
-        await updateZshTheme(member.login.toLowerCase());
+        try {
+            await updateZshTheme(member.login.toLowerCase());
+        } catch (err) {
+
+        }
     }
     await commit();
 }
