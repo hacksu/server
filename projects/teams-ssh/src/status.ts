@@ -141,4 +141,4 @@ export async function pm2Status() {
     return str;
 }
 
-pm2Status().catch(err => {})
+// pm2Status().catch(err => {})
