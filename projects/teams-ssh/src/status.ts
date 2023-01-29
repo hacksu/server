@@ -64,7 +64,7 @@ const ASCII_COLORS = /[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9
 const stripColors = (input: string) => input.replace(ASCII_COLORS, '');
 
 export async function pm2Status() {
-    const data = JSON.parse(execSync('pm2 status').toString('utf8'));
+    const data = JSON.parse(execSync('pm2 jlist').toString('utf8'));
     // const data = JSON.parse(readFileSync(__dirname + '/../test/pm2.json').toString('utf8'));
     const rows: {
         // id: number,
