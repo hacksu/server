@@ -48,6 +48,9 @@ yarn-error.log*
 **/package-lock.json
 !/package-lock.json
 
-a.json
-a.sh
-a.txt
+repos/*
+!repos/templates
+
+*.pem
+data
+/config.ts

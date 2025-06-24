@@ -9,20 +9,12 @@ if ! [ -x "$(command -v node)" ]; then
     source $REPO/scripts/setup/env.sh
 #   fetch package registry
     sudo apt update -y
-#   install node & npm
-    sudo apt install -y nodejs npm
-#   upgrade npm
-    npm install -g npm@9
-#   install n to allow us to easily swap between nodejs versions
-    echo "Upgrading Node.js Version";
-    npm install --global n
-#   swap to stable node (v18.13.0 as of 1/18/23)
-    n stable
-#   refresh shell
-    hash -r
-#   install yarn
-    echo "Installing Yarn v1";
-    npm install --global yarn@1
+    # install nvm
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+    # install LTS node
+    nvm install --lts
+    # use LTS node
+    nvm use --lts
 fi
 
 echo "Node.js is set up";
@@ -30,5 +22,3 @@ echo "Node.js is set up";
 echo "- node $(node -v)"
 # get npm version
 echo "- npm $(npm -v)"
-# get yarn version
-echo "- yarn $(yarn -v)"
