@@ -33,7 +33,7 @@ async function updateSSH() {
 }
 
 async function updateSudo() {
-    const { added, removed, members, commit } = await getMembersDelta('sudo');
+    const { added, removed, commit } = await getMembersDelta('sudo');
     for (const member of removed) {
         await sudo('disable', member.login.toLowerCase());
     }

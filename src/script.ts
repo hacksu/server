@@ -8,5 +8,5 @@ export function buildScript<T extends { [key: string]: (...args: any[]) => any }
 
 export async function exec(label: string, cmd: string) {
     console.log('exec', { label, cmd });
-    return await $``.quiet().text();
+    return await $`${cmd}`.quiet().text();
 }

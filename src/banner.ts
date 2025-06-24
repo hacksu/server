@@ -6,7 +6,7 @@ import { EOL } from 'os';
 import { promisify } from 'util';
 import { __data } from '.';
 import { exec } from './script';
-import { pm2Status } from './status';
+import { dockerComposeStatus } from './status';
 
 const BLUE = '#4683ff';
 const GREEN = '#35c982';
@@ -68,7 +68,7 @@ export async function generateBanner(commit: boolean = false) {
 export async function generateMessageOfTheDay(commit: boolean = false) {
 
     const msgs = [
-        gray(`sudo pm2 status`) + EOL + await pm2Status(),
+        gray(`sudo docker compose ls`) + EOL + await dockerComposeStatus(),
         // [
         // ].join(EOL),
     ].filter(o => o.length > 0);

@@ -1,18 +1,13 @@
-import { existsSync, readFileSync } from 'fs';
-import { __data, env, installation } from './config';
-// @ts-ignore
 import { Low } from 'lowdb';
-// @ts-ignore
-import { JSONFile } from 'lowdb/node';
+import { JSONFile } from 'lowdb/lib/adapters/JSONFile';
+import { __data, env, installation } from './config';
 
 
 type Member = Awaited<ReturnType<typeof getMembers>>['data'][number]
 
-const db = new Low<{
-    teams: Record<string, {
-        members: Member[]
-    }>
-}>(new JSONFile(__data + '/teams.json'));
+type Database = { teams: Teams }; 
+type Teams = Record<string, { members: Member[] }>;
+const db = new Low<Database>(new JSONFile(__data + '/teams.json'));
 
 async function initDB() {
     if (db.data) return db;
