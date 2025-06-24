@@ -15,23 +15,23 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "prepend-transform": "0.0.1019",
-    "gradient-string": "2.0.2",
     "@octokit/app": "^13.1.1",
     "@octokit/core": "^4.1.0",
     "@octokit/rest": "^19.0.5",
-    "figlet": "1.5.2",
     "chalk": "4",
     "dotenv": "^16.0.3",
     "envalid": "^7.3.1",
-    "node-fetch": "^3.3.0",
+    "figlet": "1.5.2",
+    "gradient-string": "2.0.2",
     "lowdb": "^5.0.5",
+    "node-fetch": "^3.3.0",
+    "prepend-transform": "0.0.1019",
     "zx": "^7.1.1"
   },
   "devDependencies": {
-    "@types/gradient-string": "^1.1.2",
-    "@types/node": "^18.11.18",
     "@types/figlet": "1.5.5",
+    "@types/gradient-string": "^1.1.2",
+    "@types/node": "^18.19.112",
     "tsx": "^3.12.2",
     "typescript": "^4.9.4"
   }

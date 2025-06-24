@@ -1,5 +1,5 @@
-import { constants, access } from 'fs/promises';
-import { generateBanner, generateMessageOfTheDay } from './src/banner';
+import { access, constants } from 'fs/promises';
+import { generateBanner } from './src/banner';
 import { ssh, sudo } from './src/scripts';
 import { getMembersDelta } from './src/teams';
 import { updateZshTheme } from './src/zsh';
@@ -8,7 +8,7 @@ function exists(path: string) {
     return access(path, constants.F_OK)
         .then(o => true)
         .catch(o => false);
-}
+} 
 
 
 async function updateSSH() {
@@ -58,6 +58,3 @@ update();
 setInterval(() => {
     update();
 }, 60 * 1000);
-// setInterval(() => {
-//     generateMessageOfTheDay(true);
-// }, 10 * 1000)

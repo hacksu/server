@@ -1,14 +1,11 @@
+import chalk from 'chalk';
 import _figlet from 'figlet';
-import { promisify } from 'util';
+import { existsSync, writeFileSync } from 'fs';
 import gradient from 'gradient-string';
 import { EOL } from 'os';
-import chalk from 'chalk';
-import { existsSync, writeFileSync } from 'fs';
+import { promisify } from 'util';
 import { __data } from '.';
 import { exec } from './script';
-import { execSync } from 'child_process';
-import { Transform } from 'stream';
-import { Console } from 'console';
 import { pm2Status } from './status';
 
 const BLUE = '#4683ff';
@@ -92,7 +89,4 @@ export async function generateMessageOfTheDay(commit: boolean = false) {
 
     return result;
 }
-
-
-// generateBanner().then(o => console.log(o));
 

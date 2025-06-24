@@ -1,7 +1,7 @@
-import { ChildProcess, exec as _exec, spawn } from 'child_process'
-import { promisify } from 'util'
+import { ChildProcess, exec as _exec } from 'child_process';
 import prepend from 'prepend-transform';
 import { PassThrough } from 'stream';
+import { promisify } from 'util';
 
 export function buildScript<T extends { [key: string]: (...args: any[]) => any }>(scripts: T) {
     return function <K extends keyof T>(script: K, ...args: Parameters<T[K]>): ReturnType<T[K]> {
@@ -40,17 +40,6 @@ export function exec(label: string, cmd: string) {
             }) as any);
         })
     })
-    // const proc = spawn('bash', ['-c', `'${cmd}'`], {
-    //     stdio: 'inherit'
-    // })
-    // return new Promise<ChildProcess>((resolve, reject) => {
-    //     proc.on('error', err => reject(err));
-    //     proc.on('close', (code) => {
-    //         if (code && code !== 0)
-    //             return reject(new Error(`Exit Code: ${code}`));
-    //         resolve(proc);
-    //     })
-    // })
 }
 
 
